@@ -1,0 +1,111 @@
+/* Theme CSS Variables and Transitions */
+
+/* Light theme (default) */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --accent-color: #1b6ec2;
+    --highlight-color: #0071c1;
+    --nav-bg: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    --nav-text: #d7d7d7;
+    --card-bg: #ffffff;
+    --card-border: #d6d5d5;
+    --top-row-bg: #f7f7f7;
+    --link-color: #0071c1;
+    --button-primary-bg: #1b6ec2;
+    --button-primary-border: #1861ac;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+    --bg-color: #1a1a2e;
+    --text-color: #eaeaea;
+    --accent-color: #0f3460;
+    --highlight-color: #e94560;
+    --nav-bg: linear-gradient(180deg, #0f3460 0%, #1a1a2e 70%);
+    --nav-text: #eaeaea;
+    --card-bg: #16213e;
+    --card-border: #0f3460;
+    --top-row-bg: #0f3460;
+    --link-color: #e94560;
+    --button-primary-bg: #e94560;
+    --button-primary-border: #c73654;
+}
+
+/* Apply smooth transitions to all theme changes */
+body,
+.page,
+.sidebar,
+.top-row,
+main,
+.content,
+a,
+.btn-link,
+.btn-primary,
+.nav-item a,
+.card,
+.navbar-toggler {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Apply theme colors */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+main {
+    background-color: var(--bg-color);
+}
+
+a, .btn-link {
+    color: var(--link-color);
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--button-primary-bg);
+    border-color: var(--button-primary-border);
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    color: var(--nav-text);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.8;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Icons for theme toggle */
+.theme-icon {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Sun icon for light mode (shown in dark theme) */
+.sun-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23eaeaea' viewBox='0 0 16 16'%3E%3Cpath d='M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Moon icon for dark mode (shown in light theme) */
+.moon-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23d7d7d7' viewBox='0 0 16 16'%3E%3Cpath d='M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
