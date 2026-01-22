@@ -1,0 +1,125 @@
+@page "/product/{id:int}"
+@using DataEntities
+@using Store.Services
+@inject IConfiguration Configuration
+@rendermode InteractiveServer
+
+<PageTitle>Product Detail</PageTitle>
+
+<div class="product-detail-container">
+    <h1>Product Detail</h1>
+
+    @if (product == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="product-detail-card">
+            <div class="product-image">
+                <img src="@($"{imagePrefix}/placeholder.jpg")" alt="@product.Name" />
+            </div>
+            <div class="product-info">
+                <h2>@product.Name</h2>
+                <p class="product-description">@product.Description</p>
+                <p class="product-price">$@product.Price.ToString("F2")</p>
+                
+                <div class="product-actions">
+                    <button class="btn btn-primary">Add to Cart</button>
+                    <a href="/products" class="btn btn-secondary">Back to Products</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .product-detail-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+    }
+
+    .product-detail-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 8px;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .product-image img {
+        width: 100%;
+        border-radius: 8px;
+        background-color: var(--card-border);
+    }
+
+    .product-info h2 {
+        color: var(--text-color);
+        margin-bottom: 1rem;
+    }
+
+    .product-description {
+        color: var(--text-color);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .product-price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--highlight-color);
+        margin-bottom: 1.5rem;
+    }
+
+    .product-actions {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .btn-secondary {
+        color: var(--text-color);
+        background-color: var(--accent-color);
+        border: 1px solid var(--card-border);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-secondary:hover {
+        background-color: var(--highlight-color);
+        color: white;
+    }
+
+    @@media (max-width: 768px) {
+        .product-detail-card {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Product? product;
+    private string imagePrefix = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate asynchronous loading
+        await Task.Delay(300);
+        imagePrefix = Configuration["ImagePrefix"]!;
+        
+        // Mock product for demonstration
+        product = new Product
+        {
+            Id = Id,
+            Name = $"Product {Id}",
+            Description = "This is a sample product description. In a real application, this would contain detailed information about the product.",
+            Price = 99.99m
+        };
+    }
+}
